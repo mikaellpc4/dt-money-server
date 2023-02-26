@@ -11,7 +11,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
+import { CurrentUserId } from 'src/auth/decorators/current-user-id.decorator';
 // import { FindTransactionsByUserInput } from './dto/find-user-transactions.input';
 
 @Resolver(() => Transaction)
@@ -25,14 +25,14 @@ export class TransactionResolver {
   createTransaction(
     @Args('createTransactionInput')
     createTransactionInput: CreateTransactionInput,
-    @CurrentUser() userId: string,
+    @CurrentUserId() userId: string,
   ) {
     return this.transactionService.create(userId, createTransactionInput);
   }
 
   @Query(() => [Transaction], { name: 'transactions' })
   @UseGuards(JwtAuthGuard)
-  findAll(@CurrentUser() userId: string) {
+  findAll(@CurrentUserId() userId: string) {
     return this.transactionService.findAll(userId);
   }
 
@@ -54,14 +54,14 @@ export class TransactionResolver {
   updateTransaction(
     @Args('updateTransactionInput')
     updateTransactionInput: UpdateTransactionInput,
-    @CurrentUser() userId: string,
+    @CurrentUserId() userId: string,
   ) {
     return this.transactionService.update(userId, updateTransactionInput);
   }
 
   @Mutation(() => Transaction)
   @UseGuards(JwtAuthGuard)
-  removeTransaction(@Args('id') id: string, @CurrentUser() userId: string) {
+  removeTransaction(@Args('id') id: string, @CurrentUserId() userId: string) {
     return this.transactionService.remove(id, userId);
   }
 }

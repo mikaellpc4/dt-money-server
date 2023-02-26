@@ -1,10 +1,10 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { PartialType } from '@nestjs/mapped-types';
 import { IsOptional, IsString } from 'class-validator';
-import { CreateUserInput } from './create-user.input';
+import { User } from '../entities/user.entity';
 
 @InputType()
-export class UpdateUserInput extends PartialType(CreateUserInput) {
+export class UpdateUserInput extends PartialType(User) {
   @Field({ nullable: true })
   @IsString()
   @IsOptional()

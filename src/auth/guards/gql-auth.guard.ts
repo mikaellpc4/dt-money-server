@@ -11,7 +11,8 @@ export class GqlAuthGuard extends AuthGuard('local') {
 
     //Converts the GraphQL Context to a Request Object
     const request = ctx?.getContext();
-    request.body = ctx.getArgs().loginUserInput;
+    request.body = ctx.getArgs().signInInput;
+    // console.log({ body: request.body });
 
     return request;
   }

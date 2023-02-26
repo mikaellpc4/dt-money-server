@@ -9,32 +9,20 @@ input CreateTransactionInput {
   type: String!
 }
 
-input CreateUserInput {
-  email: String!
-  password: String!
-}
-
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
 
-type LoginResponse {
-  acess_token: String!
-  user: User!
-}
-
-input LoginUserInput {
-  email: String!
-  password: String!
-}
-
 type Mutation {
   createTransaction(createTransactionInput: CreateTransactionInput!): Transaction!
-  createUser(createUserInput: CreateUserInput!): User!
-  login(loginUserInput: LoginUserInput!): LoginResponse!
+  refreshSession(refreshToken: String!): RefreshSessionResponse!
   removeTransaction(id: String!): Transaction!
   removeUser(password: String!): User!
+  signIn(signInInput: SignInInput!): SignInResponse!
+  signOut(refreshToken: String!): SignOutResponse!
+  signUp(signUpInput: SignUpInput!): User!
+  updateRefreshToken(refreshToken: String!): Tokens!
   updateTransaction(updateTransactionInput: UpdateTransactionInput!): Transaction!
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
@@ -43,6 +31,34 @@ type Query {
   profile: User!
   transaction(id: String!): Transaction!
   transactions: [Transaction!]!
+}
+
+type RefreshSessionResponse {
+  acess_token: String!
+}
+
+input SignInInput {
+  email: String!
+  password: String!
+}
+
+type SignInResponse {
+  tokens: Tokens!
+  user: User!
+}
+
+type SignOutResponse {
+  refreshToken: String!
+}
+
+input SignUpInput {
+  email: String!
+  password: String!
+}
+
+type Tokens {
+  acess_token: String!
+  refresh_token: String!
 }
 
 type Transaction {
@@ -78,6 +94,7 @@ type User {
   createdAt: DateTime!
   email: String!
   id: String!
+  refreshTokens: [String!]!
   transactions: [Transaction!]!
   updatedAt: DateTime!
 }

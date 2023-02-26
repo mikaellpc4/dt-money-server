@@ -1,7 +1,6 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UserService } from './user.service';
 import { User } from './entities/user.entity';
-import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import {
   ClassSerializerInterceptor,
@@ -10,8 +9,8 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { CurrentUserId } from 'src/auth/decorators/current-user-id.decorator';
 // import { FindUserInput } from './dto/find-user.input';
 
 @Resolver(() => User)
@@ -19,11 +18,6 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 @UseInterceptors(ClassSerializerInterceptor)
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
-
-  @Mutation(() => User)
-  createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
-    return this.userService.create(createUserInput);
-  }
 
   // @Query(() => [User], { name: 'users' })
   // findAll() {
@@ -37,14 +31,15 @@ export class UserResolver {
 
   @Query(() => User, { name: 'profile' })
   @UseGuards(JwtAuthGuard)
-  findOne(@CurrentUser() id: string) {
+  profile(@CurrentUserId() id: string) {
+    console.log({ id });
     return this.userService.findOne({ id });
   }
 
   @Mutation(() => User)
   @UseGuards(JwtAuthGuard)
   updateUser(
-    @CurrentUser() id: string,
+    @CurrentUserId() id: string,
     @Args('updateUserInput') updateUserInput: UpdateUserInput,
   ) {
     return this.userService.update(id, updateUserInput);
@@ -52,7 +47,7 @@ export class UserResolver {
 
   @Mutation(() => User)
   @UseGuards(JwtAuthGuard)
-  removeUser(@CurrentUser() id: string, @Args('password') password: string) {
+  removeUser(@CurrentUserId() id: string, @Args('password') password: string) {
     return this.userService.remove(id, password);
   }
 }

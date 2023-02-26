@@ -1,9 +1,9 @@
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 import { InputType, Field } from '@nestjs/graphql';
-import { User } from '../entities/user.entity';
+import { User } from 'src/user/entities/user.entity';
 
 @InputType()
-export class CreateUserInput implements Partial<User> {
+export class SignUpInput implements Partial<User> {
   @Field()
   @IsString()
   @IsEmail()

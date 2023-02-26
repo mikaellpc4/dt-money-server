@@ -23,6 +23,9 @@ export class User implements UserData {
   @Field(() => [Transaction])
   transactions: Transaction[];
 
+  @Field(() => [String])
+  refreshTokens: string[];
+
   constructor(partial: Partial<User>) {
     Object.assign(this, partial);
   }
