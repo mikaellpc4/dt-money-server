@@ -21,6 +21,7 @@ import { AuthModule } from './auth/auth.module';
       playground: true,
       autoSchemaFile: join(process.cwd(), 'src/types/schema.gql'),
       sortSchema: true,
+      introspection: true,
     }),
     UserModule,
     TransactionModule,
