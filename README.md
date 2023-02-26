@@ -11,7 +11,7 @@
 
 ## Descrição
 
-Projeto pessoal feito com um amigo utilizando [Nest](https://github.com/nestjs/nest) como backend e [ReactJS](https://reactjs.org/), juntos eles constroem um sistema de controle de gastos com login e registro por meio de [PassportJS](https://www.passportjs.org/) utilizando Local e JWT strategy para construir um sistema com refresh token. 
+Projeto pessoal feito com um amigo utilizando [Nest](https://github.com/nestjs/nest) como backend e [ReactJS](https://reactjs.org/) no frontend, juntos eles constroem um sistema de controle de gastos com login e registro por meio de [PassportJS](https://www.passportjs.org/) utilizando Local e JWT strategy para construir um sistema com refresh token. 
 
 ## Instalação
 
