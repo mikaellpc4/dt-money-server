@@ -1,0 +1,83 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateTransactionInput {
+  category: String!
+  description: String!
+  price: Float!
+  type: String!
+}
+
+input CreateUserInput {
+  email: String!
+  password: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type LoginResponse {
+  acess_token: String!
+  user: User!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  createTransaction(createTransactionInput: CreateTransactionInput!): Transaction!
+  createUser(createUserInput: CreateUserInput!): User!
+  login(loginUserInput: LoginUserInput!): LoginResponse!
+  removeTransaction(id: String!): Transaction!
+  removeUser(password: String!): User!
+  updateTransaction(updateTransactionInput: UpdateTransactionInput!): Transaction!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+type Query {
+  profile: User!
+  transaction(id: String!): Transaction!
+  transactions: [Transaction!]!
+}
+
+type Transaction {
+  category: String!
+  createdAt: DateTime!
+  description: String!
+  id: String!
+  price: Float!
+  type: TypeOfTransaction!
+  updatedAt: DateTime!
+  userId: String!
+}
+
+enum TypeOfTransaction {
+  income
+  outcome
+}
+
+input UpdateTransactionInput {
+  category: String
+  description: String
+  id: String!
+  price: Float
+  type: String
+}
+
+input UpdateUserInput {
+  email: String
+  password: String
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  id: String!
+  transactions: [Transaction!]!
+  updatedAt: DateTime!
+}
