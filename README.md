@@ -11,7 +11,11 @@
 
 ## Descrição
 
-Projeto pessoal feito com [Nest](https://github.com/nestjs/nest) como backend e futuramente com uma conexão frontend [ReactJS](https://reactjs.org/) que está sendo construido pelo [Eduardo](https://github.com/edusmpaio). Esse projeto se trata de um sistema de controle de gastos com login e registro por meio de [PassportJS](https://www.passportjs.org/) utilizando Local e JWT strategy para construir um sistema com refresh token. Também foi utilizado GraphQL para comunicação com a API, caso queira visualizar as schemas do projeto acesse o link do [APP](https://dt-money.herokuapp.com/graphql), a introspection do Apollo está ativada em ambiente de produção somente para que essa visualização seja possivel, não sendo uma boa pratica para projetos em produção reais.
+Projeto pessoal feito com [Nest](https://github.com/nestjs/nest) como backend e futuramente com uma conexão frontend [ReactJS](https://reactjs.org/) que está sendo construido pelo [Eduardo](https://github.com/edusmpaio). 
+
+Esse projeto se trata de um sistema de controle de gastos com login e registro por meio de [PassportJS](https://www.passportjs.org/) utilizando Local e JWT strategy para construir um sistema com refresh token. 
+
+Também foi utilizado GraphQL para comunicação com a API, caso queira visualizar as schemas do projeto acesse o link do [APP](https://dt-money.herokuapp.com/graphql), a introspection do Apollo está ativada em ambiente de produção somente para que essa visualização seja possivel, não sendo uma boa prática para projetos em produção reais.
 
 ## Instalação
 
