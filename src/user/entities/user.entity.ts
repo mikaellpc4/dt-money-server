@@ -23,7 +23,7 @@ export class User implements UserData {
   @Field(() => [Transaction])
   transactions: Transaction[];
 
-  @Field(() => [String])
+  @Exclude()
   refreshTokens: string[];
 
   constructor(partial: Partial<User>) {
